@@ -13,16 +13,21 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.janardhan.model.Employee;
 
+
+import io.swagger.v3.oas.annotations.Operation;
+
 @RestController
 public class EmployeeController {
 
 	private List<Employee> employees = createList();
 
 	@RequestMapping(value = "/employees", method = RequestMethod.GET, produces = "application/json")
+	@Operation(summary 	 = "To showcase the Employee list")
 	public List<Employee> firstPage() {
 		return employees;
 	}
 
+	@Operation(summary 	 = "Delete the Employee list based on the Employee ID")
 	@DeleteMapping(path = { "/{id}" })
 	public Employee delete(@PathVariable("id") int id) {
 		Employee deletedEmp = null;
@@ -35,7 +40,7 @@ public class EmployeeController {
 		}
 		return deletedEmp;
 	}
-
+	@Operation(summary 	 = "Using the post call to persist the Employee Data")
 	@PostMapping
 	public Employee create(@RequestBody Employee user) {
 		employees.add(user);
