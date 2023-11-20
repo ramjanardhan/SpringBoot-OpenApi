@@ -24,6 +24,7 @@ public class EmployeeController {
 	@RequestMapping(value = "/employees", method = RequestMethod.GET, produces = "application/json")
 	@Operation(summary 	 = "To showcase the Employee list")
 	public List<Employee> firstPage() {
+		System.out.println("Checking");
 		return employees;
 	}
 
